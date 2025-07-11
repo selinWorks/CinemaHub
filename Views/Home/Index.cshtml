@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "CinemaHub — Find Your Next Movie or Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div id="mainContentWrapper" class="p-6 transition-filter duration-300">
+
+    <!-- Kategori Butonları -->
+    <div class="flex gap-2 mb-4 justify-center">
+        <button class="category-btn active bg-blue-600 text-white px-3 py-1 rounded" data-category="Tümü">Tümü</button>
+        <button class="category-btn bg-gray-700 text-gray-200 px-3 py-1 rounded" data-category="Aksiyon">Aksiyon</button>
+        <button class="category-btn bg-gray-700 text-gray-200 px-3 py-1 rounded" data-category="Komedi">Komedi</button>
+        <button class="category-btn bg-gray-700 text-gray-200 px-3 py-1 rounded" data-category="Dram">Dram</button>
+        <button class="category-btn bg-gray-700 text-gray-200 px-3 py-1 rounded" data-category="Bilim Kurgu">Bilim Kurgu</button>
+        <button class="category-btn bg-gray-700 text-gray-200 px-3 py-1 rounded" data-category="Gerilim">Gerilim</button>
+    </div>
+
+    <!-- Arama Çubuğu -->
+    <div class="mb-6 max-w-xl mx-auto">
+        <input type="text" id="searchInput" placeholder="Film ara..." autocomplete="off"
+               class="w-full rounded-md px-4 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+    </div>
+
+    <!-- Film Şeritleri (2 satır) -->
+    <div id="movieStripContainer" class="movie-strip-container flex flex-col gap-6 overflow-hidden">
+        <!-- JS ile şeritler ve filmler buraya eklenecek -->
+    </div>
+</div>
+
+<!-- Arama Modalı -->
+<div id="searchModalOverlay" class="search-modal-overlay hidden fixed inset-0 bg-black bg-opacity-70 z-50 justify-center items-center">
+    <div class="search-modal-content bg-gray-800 p-6 rounded-md w-full max-w-lg text-white">
+        <button id="closeSearchModal" class="mb-4 px-3 py-1 bg-red-600 rounded hover:bg-red-700 transition">Kapat</button>
+
+        <div class="mb-4">
+            <label for="modalSearchTerm" class="block mb-1 font-semibold">Film Adı</label>
+            <input type="text" id="modalSearchTerm" class="w-full rounded-md px-3 py-2 text-gray-900" />
+        </div>
+
+        <div class="mb-4">
+            <label class="block mb-1 font-semibold">Kategori</label>
+            <div class="flex flex-wrap gap-2">
+                <button class="modal-category-btn active" data-category="Tümü">Tümü</button>
+                <button class="modal-category-btn" data-category="Aksiyon">Aksiyon</button>
+                <button class="modal-category-btn" data-category="Komedi">Komedi</button>
+                <button class="modal-category-btn" data-category="Dram">Dram</button>
+                <button class="modal-category-btn" data-category="Bilim Kurgu">Bilim Kurgu</button>
+                <button class="modal-category-btn" data-category="Gerilim">Gerilim</button>
+                <button class="modal-category-btn" data-category="Fantastik">Fantastik</button>
+                <button class="modal-category-btn" data-category="Korku">Korku</button>
+                <button class="modal-category-btn" data-category="Animasyon">Animasyon</button>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="modalImdbRating" class="block mb-1 font-semibold">Minimum IMDb Puanı</label>
+            <select id="modalImdbRating" class="w-full rounded-md px-3 py-2 text-gray-900">
+                <option value="0">Tümü</option>
+                <option value="5">5 ve üzeri</option>
+                <option value="6">6 ve üzeri</option>
+                <option value="7">7 ve üzeri</option>
+                <option value="8">8 ve üzeri</option>
+                <option value="9">9 ve üzeri</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="modalReleaseYear" class="block mb-1 font-semibold">Yayın Yılı</label>
+            <input type="number" id="modalReleaseYear" class="w-full rounded-md px-3 py-2 text-gray-900" placeholder="Örn: 1999" />
+        </div>
+
+        <div class="mb-4">
+            <label for="modalActors" class="block mb-1 font-semibold">Oyuncular (virgülle ayır)</label>
+            <input type="text" id="modalActors" class="w-full rounded-md px-3 py-2 text-gray-900" placeholder="Tom Hanks, Morgan Freeman" />
+        </div>
+
+        <div class="mb-4">
+            <label for="modalDirectors" class="block mb-1 font-semibold">Yönetmenler (virgülle ayır)</label>
+            <input type="text" id="modalDirectors" class="w-full rounded-md px-3 py-2 text-gray-900" placeholder="Nolan, Spielberg" />
+        </div>
+
+        <button id="performDetailedSearch" class="w-full bg-blue-600 py-2 rounded hover:bg-blue-700 transition text-white font-semibold">Ara</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/site.css" />
+}
