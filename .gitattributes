@@ -3,5 +3,5 @@
 
 *.cs     linguist-detectable=true
 *.cshtml linguist-detectable=true
-*.js     linguist-vendored
+
 
