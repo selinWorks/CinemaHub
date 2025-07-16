@@ -1,5 +1,13 @@
+wwwroot\css\navbar.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\images\logo.png
+wwwroot\js\auth.js
+wwwroot\js\footer.js
+wwwroot\js\homepage.js
+wwwroot\js\modal.js
+wwwroot\js\navbar.js
+wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -57,4 +65,4 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\js\site.js
+wwwroot\css\footer.css

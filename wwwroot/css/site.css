@@ -1,4 +1,8 @@
-﻿/* ========== Film Şeritleri ve Kartları ========== */
+﻿body {
+    font-family: 'Quicksand', Arial, sans-serif;
+}
+
+
 .movie-strip-container {
     width: 100vw;
     overflow: hidden;
@@ -10,7 +14,7 @@
 }
 
     .movie-strip::-webkit-scrollbar {
-        display: none; /* Chrome, Safari */
+        display: none;
     }
 
 .movie-strip-inner {
@@ -41,7 +45,14 @@
         transform: scale(1.05);
     }
 
-/* Scroll animasyonları */
+.movie-card h3 {
+    font-family: 'Quicksand', Arial, sans-serif !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    text-shadow: 0 2px 8px #0008;
+}
+
+
 @keyframes scroll-right {
     0% {
         transform: translateX(0%);
@@ -61,7 +72,7 @@
     }
 }
 
-/* ========== Arama Modalı ========== */
+
 .search-modal-overlay {
     display: none;
     position: fixed;
@@ -89,12 +100,12 @@
     color: #fff;
 }
 
-/* Blur efekt */
+
 .blurred {
     filter: blur(4px);
 }
 
-/* ========== Kategori Butonları ========== */
+
 .category-btn {
     background-color: #374151;
     color: #d1d5db;
@@ -116,7 +127,7 @@
         color: white;
     }
 
-/* ========== Modal İçindeki Kategori Butonları ========== */
+
 .modal-category-btn {
     background-color: #374151;
     color: #d1d5db;
@@ -135,8 +146,12 @@
         color: white;
     }
 
-    /* Buton hover */
+   
     .modal-category-btn:hover {
         background-color: #2563eb;
         color: white;
     }
+
+main {
+    padding-top: 64px;
+}

@@ -1,12 +1,49 @@
-﻿<nav class="bg-gray-800 shadow-md py-4 px-6 flex justify-between items-center">
-    <div class="text-white text-2xl font-bold">
-        CinemaHub
+﻿
+<nav class="cinema-navbar glass-navbar">
+   
+    <div class="navbar-container">
+   
+        <a asp-controller="Home" asp-action="Index" class="navbar-logo">
+            <img src="/images/logo.png" alt="CinemaHub Logo" class="navbar-logo-img" />
+        </a>
+
+        
+        <div class="navbar-links">
+            <a asp-controller="Movies" asp-action="Index"><i class="fas fa-clapperboard"></i> <span>Movies</span></a>
+            <a asp-controller="Series" asp-action="Index"><i class="fas fa-tv"></i> <span>Series</span></a>
+            <a asp-controller="MyList" asp-action="Index"><i class="fas fa-bookmark"></i> <span>My List</span></a>
+            <a asp-controller="Home" asp-action="About"><i class="fas fa-info-circle"></i> <span>About Us</span></a>
+        </div>
+       
+        <div class="navbar-actions flex items-center gap-4">
+            
+            <button class="notification-btn"><i class="fas fa-bell"></i></button>
+          
+            <div class="navbar-account">
+                <button id="account-toggle" class="account-btn avatar-btn">
+                    <img src="https://ui-avatars.com/api/?name=User&background=800020&color=fff&rounded=true&size=32" alt="Avatar" class="avatar-img" />
+                    <i class="fas fa-chevron-down arrow-icon"></i>
+                </button>
+                <div id="account-menu" class="account-dropdown">
+                    <div class="account-card">
+                        <a asp-controller="Profile" asp-action="Index"><i class="fas fa-user"></i> Profilim</a>
+                        <a asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="mobile-menu-button" class="navbar-mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
-    <ul class="flex gap-6 text-gray-200 font-medium">
-        <li><a href="/Home/Movies" class="hover:text-blue-400">Movies</a></li>
-        <li><a href="/Home/Series" class="hover:text-blue-400">Series</a></li>
-        <li><a href="/Home/MyList" class="hover:text-blue-400">My List</a></li>
-        <li><a href="/Home/About" class="hover:text-blue-400">About Us</a></li>
-        <li><a href="/Account/Profile" class="hover:text-blue-400">Profile</a></li>
-    </ul>
+   
+    <div id="mobile-menu" class="navbar-mobile">
+        <a asp-controller="Movies" asp-action="Index"><i class="fas fa-clapperboard"></i> Movies</a>
+        <a asp-controller="Series" asp-action="Index"><i class="fas fa-tv"></i> Series</a>
+        <a asp-controller="MyList" asp-action="Index"><i class="fas fa-bookmark"></i> My List</a>
+        <a asp-controller="Home" asp-action="About"><i class="fas fa-info-circle"></i> About Us</a>
+        <a asp-controller="Profile" asp-action="Index"><i class="fas fa-user"></i> Profilim</a>
+        <a asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
+    </div>
+    <div class="navbar-fade"></div>
 </nav>

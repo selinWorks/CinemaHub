@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const categoryButtons = document.querySelectorAll('.category-btn');
     const searchInput = document.getElementById('searchInput');
 
-    // Arama modal öğeleri
+    
     const searchModalOverlay = document.getElementById('searchModalOverlay');
     const closeSearchModalBtn = document.getElementById('closeSearchModal');
     const modalSearchTerm = document.getElementById('modalSearchTerm');
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const performDetailedSearchBtn = document.getElementById('performDetailedSearch');
     const mainContentWrapper = document.getElementById('mainContentWrapper');
 
-    // Film kartı oluşturma fonksiyonu
+ 
     function createMovieCard(movie) {
         const card = document.createElement('div');
         card.className = 'movie-card';
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return card;
     }
 
-    // Film listesini filtreleyen fonksiyon
+  
     function filterMovies(category = 'Tümü', searchTerm = '', imdbMin = 0, releaseYear = null, actors = [], directors = []) {
         return movies.filter(movie => {
             const matchCategory = (category === 'Tümü') || (movie.category === category);
@@ -66,16 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Film şeritlerini oluşturma fonksiyonu (iki satır sağdan sola kayan)
+   
     function renderMovieStrips(filteredMovies) {
         movieStripContainer.innerHTML = '';
 
-        // İki satıra ayırmak için filmleri iki gruba böl
+        
         const half = Math.ceil(filteredMovies.length / 2);
         const firstRowMovies = filteredMovies.slice(0, half);
         const secondRowMovies = filteredMovies.slice(half);
 
-        // İlk şerit
+       
         const firstStrip = document.createElement('div');
         firstStrip.className = 'movie-strip';
         firstStrip.style.setProperty('--scroll-duration', '30s');
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             firstStripInner.appendChild(createMovieCard(movie));
         });
 
-        // Filmleri tekrar ettir (sonsuz kaydırma için)
+        
         firstRowMovies.forEach(movie => {
             firstStripInner.appendChild(createMovieCard(movie));
         });
@@ -95,14 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
         firstStrip.appendChild(firstStripInner);
         movieStripContainer.appendChild(firstStrip);
 
-        // İkinci şerit (soldan sağa kayacak)
+       
         const secondStrip = document.createElement('div');
         secondStrip.className = 'movie-strip';
         secondStrip.style.setProperty('--scroll-duration', '30s');
 
         const secondStripInner = document.createElement('div');
         secondStripInner.className = 'movie-strip-inner';
-        secondStripInner.style.animationName = 'scroll-left'; // Soldan sağa animasyon
+        secondStripInner.style.animationName = 'scroll-left'; 
 
         secondRowMovies.forEach(movie => {
             secondStripInner.appendChild(createMovieCard(movie));
@@ -116,24 +116,24 @@ document.addEventListener('DOMContentLoaded', () => {
         movieStripContainer.appendChild(secondStrip);
     }
 
-    // Başlangıçta tüm filmleri göster
+    
     renderMovieStrips(movies);
 
-    // Kategori butonları olayları
+    
     categoryButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Aktif butonu değiştir
+           
             categoryButtons.forEach(b => b.classList.remove('active', 'bg-blue-600', 'text-white'));
             btn.classList.add('active', 'bg-blue-600', 'text-white');
 
-            // Filtreyi uygula
+            
             const category = btn.getAttribute('data-category');
             const filtered = filterMovies(category, searchInput.value.trim());
             renderMovieStrips(filtered);
         });
     });
 
-    // Arama kutusu olayları (basit)
+   
     searchInput.addEventListener('input', () => {
         const activeCategoryBtn = document.querySelector('.category-btn.active');
         const category = activeCategoryBtn ? activeCategoryBtn.getAttribute('data-category') : 'Tümü';
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderMovieStrips(filtered);
     });
 
-    // Modal açma ve kapatma
+    
     searchInput.addEventListener('focus', () => {
         openSearchModal();
     });
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeSearchModal() {
         searchModalOverlay.classList.add('hidden');
-        searchModalOverlay.classList.remove('flex'); // BUNU EKLE!
+        searchModalOverlay.classList.remove('flex'); 
         mainContentWrapper.classList.remove('blurred');
     }
 
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closeSearchModal();
     });
 
-    // Modal kategori butonları
+    
     modalCategoryButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             modalCategoryButtons.forEach(b => b.classList.remove('active', 'bg-blue-600', 'text-white'));
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Modal detaylı arama butonu
+    
     performDetailedSearchBtn.addEventListener('click', () => {
         const categoryBtn = document.querySelector('.modal-category-btn.active');
         const category = categoryBtn ? categoryBtn.getAttribute('data-category') : 'Tümü';
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const filtered = filterMovies(category, searchTerm, imdbMin, releaseYear, actors, directors);
         renderMovieStrips(filtered);
 
-        // Modal kapat ve ana arama kutusuna filtreyi yansıt
+        
         closeSearchModal();
         searchInput.value = searchTerm;
     });

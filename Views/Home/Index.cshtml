@@ -7,7 +7,7 @@
 
 <div id="mainContentWrapper" class="p-6 transition-filter duration-300">
 
-    <!-- Kategori Butonları -->
+    
     <div class="flex gap-2 mb-4 justify-center">
         <button class="category-btn active bg-blue-600 text-white px-3 py-1 rounded" data-category="Tümü">Tümü</button>
         <button class="category-btn bg-gray-700 text-gray-200 px-3 py-1 rounded" data-category="Aksiyon">Aksiyon</button>
@@ -17,19 +17,19 @@
         <button class="category-btn bg-gray-700 text-gray-200 px-3 py-1 rounded" data-category="Gerilim">Gerilim</button>
     </div>
 
-    <!-- Arama Çubuğu -->
+    
     <div class="mb-6 max-w-xl mx-auto">
         <input type="text" id="searchInput" placeholder="Film ara..." autocomplete="off"
                class="w-full rounded-md px-4 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600" />
     </div>
 
-    <!-- Film Şeritleri (2 satır) -->
+    
     <div id="movieStripContainer" class="movie-strip-container flex flex-col gap-6 overflow-hidden">
-        <!-- JS ile şeritler ve filmler buraya eklenecek -->
+        
     </div>
 </div>
 
-<!-- Arama Modalı -->
+
 <div id="searchModalOverlay" class="search-modal-overlay hidden fixed inset-0 bg-black bg-opacity-70 z-50 justify-center items-center">
     <div class="search-modal-content bg-gray-800 p-6 rounded-md w-full max-w-lg text-white">
         <button id="closeSearchModal" class="mb-4 px-3 py-1 bg-red-600 rounded hover:bg-red-700 transition">Kapat</button>
@@ -91,4 +91,6 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/css/site.css" />
+
 }
+

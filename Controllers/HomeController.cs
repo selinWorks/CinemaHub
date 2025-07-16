@@ -7,7 +7,7 @@ namespace CinemaHub.Controllers
     {
         public IActionResult Index()
         {
-            // JSON veya sabit liste üzerinden film verileri verilebilir
+          
             return View();
         }
     }

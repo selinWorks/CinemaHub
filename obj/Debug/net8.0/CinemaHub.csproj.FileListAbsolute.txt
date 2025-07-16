@@ -31,3 +31,4 @@ C:\Users\hp\source\repos\CinemaHub\CinemaHub\obj\Debug\net8.0\refint\CinemaHub.d
 C:\Users\hp\source\repos\CinemaHub\CinemaHub\obj\Debug\net8.0\CinemaHub.pdb
 C:\Users\hp\source\repos\CinemaHub\CinemaHub\obj\Debug\net8.0\CinemaHub.genruntimeconfig.cache
 C:\Users\hp\source\repos\CinemaHub\CinemaHub\obj\Debug\net8.0\ref\CinemaHub.dll
+C:\Users\hp\source\repos\CinemaHub\CinemaHub\obj\Debug\net8.0\CinemaHub.sourcelink.json

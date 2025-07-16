@@ -1,3 +1,58 @@
-﻿<footer class="bg-gray-800 text-center text-gray-400 py-4">
-    <p>&copy; @DateTime.Now.Year CinemaHub. All rights reserved.</p>
+﻿
+<footer class="cinema-footer glass-footer" data-aos="fade-up">
+    <div class="footer-inner">
+       
+        <div class="footer-brand">
+            <i class="fa-solid fa-film-roll brand-icon"></i>
+            <span class="navbar-brand">
+                <img src="~/images/logo.png" alt="CinemaHub Logo" style="height:50px; margin-left:45px; vertical-align:middle;">
+            </span>
+            <p class="tagline">Your daily dose of shows & popcorn 🍿</p>
+        </div>
+
+       
+        <div class="footer-links">
+            <nav>
+                <h3>Explore</h3>
+                <a href="/movies">Movies</a>
+                <a href="/series">Series</a>
+                <a href="/mylist">My List</a>
+                <a href="/about">About Us</a>
+            </nav>
+            <nav>
+                <h3>Genres</h3>
+                <a href="/genre/action">Action</a>
+                <a href="/genre/comedy">Comedy</a>
+                <a href="/genre/drama">Drama</a>
+                <a href="/genre/scifi">Sci‑Fi</a>
+            </nav>
+            <nav>
+                <h3>Support</h3>
+                <a href="/faq">FAQ</a>
+                <a href="/contact">Contact</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/terms">Terms</a>
+            </nav>
+        </div>
+
+        
+        <div class="footer-social">
+            <h3>Stay in the loop</h3>
+            <form asp-controller="Newsletter" asp-action="Subscribe" class="newsletter-form">
+                <input type="email" name="email" placeholder="Email address" required />
+                <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-discord"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <span>&copy; @DateTime.Now.Year CinemaHub. All rights reserved.</span>
+    </div>
 </footer>

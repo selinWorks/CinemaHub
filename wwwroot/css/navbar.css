@@ -1,0 +1,300 @@
+﻿
+.cinema-navbar.glass-navbar,
+.cinema-navbar.glass-navbar * {
+    font-family: 'Quicksand', Arial, sans-serif !important;
+}
+
+    
+    .cinema-navbar.glass-navbar i,
+    .cinema-navbar.glass-navbar .fa,
+    .cinema-navbar.glass-navbar .fas,
+    .cinema-navbar.glass-navbar .fa-solid,
+    .cinema-navbar.glass-navbar .far,
+    .cinema-navbar.glass-navbar .fab {
+        font-family: 'Font Awesome 6 Free' !important;
+        font-weight: 900;
+    }
+
+
+.cinema-navbar.glass-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(17, 17, 17, 0.7);
+    backdrop-filter: blur(12px) saturate(120%);
+}
+
+.navbar-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    padding: 0 2.5rem;
+}
+
+.navbar-logo-img {
+    height: 48px; 
+    object-fit: contain;
+    transition: transform 0.2s;
+}
+
+    .navbar-logo-img:hover {
+        transform: scale(1.07) rotate(-2deg);
+    }
+
+
+.navbar-links {
+    display: flex;
+    gap: 2.2rem;
+}
+
+    .navbar-links a {
+        color: #FFD700;
+        font-size: 1.13rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        position: relative;
+        transition: color 0.2s, transform 0.2s;
+        padding: 0.2rem 0.5rem;
+        border-radius: 0.3rem;
+    }
+
+        .navbar-links a:hover {
+            color: #fff;
+            background: #80002044;
+            transform: translateY(-2px) scale(1.07);
+        }
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.notification-btn {
+    background: none;
+    border: none;
+    color: #FFD700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+    .notification-btn:hover {
+        color: #fff;
+    }
+
+
+
+.account-btn.avatar-btn {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #FFD700;
+    font-size: 1.1rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 2rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+    .account-btn.avatar-btn:hover {
+        background: #80002044;
+        color: #fff;
+    }
+
+.avatar-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #FFD700;
+    object-fit: cover;
+    background: #800020;
+}
+
+.arrow-icon {
+    transition: transform 0.3s;
+}
+
+.account-btn.active .arrow-icon {
+    transform: rotate(180deg);
+}
+
+
+.account-dropdown {
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background: rgba(17, 17, 17, 0.98);
+    border: 1.5px solid #FFD70055;
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px #80002055;
+    min-width: 180px;
+    max-width: 220px;
+    padding: 0.3rem 0.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+    overflow: hidden;
+    z-index: 20000;
+    height: 90px;
+    overflow-y: auto;
+}
+
+    .account-dropdown.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+.account-card {
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.account-card a {
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.3rem 0;
+    border-radius: 0.3rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+    .account-card a:hover {
+        background: #800020;
+        color: #fff;
+    }
+
+
+.navbar-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #FFD700;
+    font-size: 1.7rem;
+    cursor: pointer;
+    margin-left: 1.5rem;
+}
+
+@media (max-width: 1000px) {
+    .navbar-links {
+        display: none;
+    }
+
+    .navbar-mobile-toggle {
+        display: block;
+    }
+
+    .navbar-container {
+        padding: 0 1rem;
+    }
+}
+
+
+.navbar-mobile {
+    position: fixed;
+    top: 90px; 
+    left: 0;
+    width: 280px; 
+    height: 340px;
+    z-index: 10000; 
+    display: flex;
+    flex-direction: column;
+    background: rgba(17, 17, 17, 0.97);
+    border-right: 2px solid #FFD700;
+    padding: 1rem 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-100%); 
+    transition: opacity .3s, transform .3s;
+    border-radius: 1.2rem;
+    box-shadow: 0 8px 32px #80002055;
+}
+
+    .navbar-mobile.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0); 
+    }
+
+
+    .navbar-mobile a {
+        color: #FFD700;
+        padding: 1rem 1.8rem;
+        border-bottom: 1px solid #80002044;
+        text-decoration: none;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        transition: background .2s, color .2s;
+    }
+
+        .navbar-mobile a:hover {
+            background: #800020;
+            color: #fff;
+        }
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(8deg);
+    }
+
+    40% {
+        transform: rotate(-8deg);
+    }
+
+    60% {
+        transform: rotate(6deg);
+    }
+
+    80% {
+        transform: rotate(-6deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.notification-btn:hover i {
+    animation: shake 0.6s ease-in-out;
+}
+
+
+.navbar-fade {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 20px;
+    pointer-events: none;
+    z-index: 10;
+    background: linear-gradient(
+        to bottom,
+        rgba(24, 24, 24, 1) 0%,
+        rgba(24, 24, 24, 0.7) 40%,
+        rgba(24, 24, 24, 0.3) 80%,
+        rgba(24, 24, 24, 0) 100%
+    );
+}
+
