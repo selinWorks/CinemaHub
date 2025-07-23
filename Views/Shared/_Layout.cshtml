@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/homepage.css" asp-append-version="true" /> @* HomePage özel stillerini ekleyin *@
     <link rel="stylesheet" href="~/css/detailedSearchModal.css" asp-append-version="true" /> @* Detaylı Arama Modal stillerini ekleyin*@
-    <link rel="stylesheet" href="~/css/upcoming.css" asp-append-version="true" />
     @RenderSection("Styles", required: false)
 </head>
 <body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col">
@@ -64,10 +63,21 @@
         AOS.init(); // AOS'u başlatma betiği
     </script>
 
+    <div id="movieDetailModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <div id="modalContentInner">
+                @* Bu kısım başlangıçta boş kalacak ve JavaScript ile API çağrısından sonra doldurulacak *@
+                @* AJAX çağrısı ile View Component'in render ettiği HTML buraya gelecek *@
+            </div>
+        </div>
+    </div>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/navbar.js" asp-append-version="true"></script>
     <script src="~/js/homepage.js" asp-append-version="true"></script> @* HomePage JS'ini ekleyin *@
     <script src="~/js/detailedSearchModal.js" asp-append-version="true"></script> @* Detaylı Arama Modal JS'ini ekleyin *@
+    <script src="~/js/modal-details.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

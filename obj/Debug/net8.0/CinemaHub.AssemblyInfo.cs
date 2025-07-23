@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CinemaHub")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64ba3793faac69781249c1446d1cb7b556b7bcab")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88a969e3919a0b3648422fe826c030f0b7fa39f3")]
 [assembly: System.Reflection.AssemblyProductAttribute("CinemaHub")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CinemaHub")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
