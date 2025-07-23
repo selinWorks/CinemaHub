@@ -1,0 +1,180 @@
+﻿namespace Cine/* Genel modal overlay */
+.search-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 50;
+    justify-content: center;
+    align-items: center;
+}
+
+    .search-modal-overlay.flex {
+        display: flex; /* JavaScript tarafından aktif edildiğinde */
+    }
+
+/* Eski modal içeriği (eğer kullanılıyorsa) */
+.search-modal-content {
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    color: #fff;
+}
+
+/* Blur efekti (isteğe bağlı) */
+.blurred {
+    filter: blur(4px);
+}
+
+
+/* Yeni detaylı arama modal overlay */
+.new-search-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0; /* top, right, bottom, left: 0 */
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* overlay aktifken */
+.new-search-modal-overlay.active {
+    display: flex;
+}
+
+/* Modal kutusu */
+.new-search-modal {
+    background: #121212;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 100%;
+    color: #eee;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 0 30px #ffcc0055;
+    font-family: 'Quicksand', sans-serif;
+    position: relative;
+}
+
+/* Başlık */
+.new-search-modal h2 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #ffd600;
+    text-align: center;
+}
+
+/* Kapatma butonu */
+.new-search-modal .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 1.6rem;
+    color: #ffd600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.new-search-modal .close-btn:hover {
+    color: #fff;
+}
+
+/* Form alanları düzeni */
+.new-search-modal label {
+    display: block;
+    margin: 1rem 0 0.4rem;
+    font-weight: 600;
+    color: #ffd600;
+    font-size: 1rem;
+}
+
+.new-search-modal input[type="text"],
+.new-search-modal input[type="number"],
+.new-search-modal select {
+    width: 100%;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #222;
+    color: #eee;
+    outline: none;
+    box-shadow: inset 0 0 8px #ffcc00aa;
+    transition: box-shadow 0.3s ease;
+}
+
+.new-search-modal input[type="text"]:focus,
+.new-search-modal input[type="number"]:focus,
+.new-search-modal select:focus {
+    box-shadow: 0 0 12px #ffd600cc;
+}
+
+/* Kategori butonları alanı (modal içinde) */
+.new-search-modal .modal-category-buttons {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.new-search-modal .modal-category-btn {
+    flex: 1 1 auto;
+    min-width: 80px;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    background-color: #444;
+    color: #ddd;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    user-select: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.new-search-modal .modal-category-btn.active,
+.new-search-modal .modal-category-btn:hover {
+    background-color: #ffd600;
+    color: #121212;
+}
+
+/* Ara butonu */
+.new-search-modal button.search-submit-btn {
+    margin-top: 1.8rem;
+    width: 100%;
+    padding: 0.75rem 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: #ffd600;
+    color: #121212;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.new-search-modal button.search-submit-btn:hover {
+    background: #ffea00;
+}
+
+/* Responsive için */
+@media (max-width: 480px) {
+    .new-search-modal {
+        padding: 1.5rem 1.8rem;
+    }
+
+    .new-search-modal h2 {
+        font-size: 1.4rem;
+    }
+}

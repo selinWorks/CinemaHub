@@ -1,0 +1,48 @@
+﻿@*
+    Bu dosya: Views/Shared/_DetailedSearchModal.cshtml
+    Detaylı arama modalının HTML yapısını içerir.
+*@
+
+<div id="newSearchModalOverlay" class="new-search-modal-overlay">
+    <div class="new-search-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="close-btn" id="newCloseModalBtn" aria-label="Kapat">&times;</button>
+        <h2 id="modalTitle">Detaylı Film Arama</h2>
+
+        <label for="newModalSearchTerm">Film Adı</label>
+        <input type="text" id="newModalSearchTerm" placeholder="Film adı..." />
+
+        <label>Kategori</label>
+        <div class="modal-category-buttons" id="newModalCategoryButtons">
+            <button class="modal-category-btn active" data-category="Tümü">Tümü</button>
+            <button class="modal-category-btn" data-category="Aksiyon">Aksiyon</button>
+            <button class="modal-category-btn" data-category="Komedi">Komedi</button>
+            <button class="modal-category-btn" data-category="Dram">Dram</button>
+            <button class="modal-category-btn" data-category="Bilim Kurgu">Bilim Kurgu</button>
+            <button class="modal-category-btn" data-category="Gerilim">Gerilim</button>
+            <button class="modal-category-btn" data-category="Fantastik">Fantastik</button>
+            <button class="modal-category-btn" data-category="Korku">Korku</button>
+            <button class="modal-category-btn" data-category="Animasyon">Animasyon</button>
+        </div>
+
+        <label for="newModalImdbRating">Minimum IMDb Puanı</label>
+        <select id="newModalImdbRating">
+            <option value="0">Tümü</option>
+            <option value="5">5 ve üzeri</option>
+            <option value="6">6 ve üzeri</option>
+            <option value="7">7 ve üzeri</option>
+            <option value="8">8 ve üzeri</option>
+            <option value="9">9 ve üzeri</option>
+        </select>
+
+        <label for="newModalReleaseYear">Yayın Yılı</label>
+        <input type="number" id="newModalReleaseYear" placeholder="Örn: 1999" min="1900" max="2099" />
+
+        <label for="newModalActors">Oyuncular (virgülle ayır)</label>
+        <input type="text" id="newModalActors" placeholder="Tom Hanks, Morgan Freeman" />
+
+        <label for="newModalDirectors">Yönetmenler (virgülle ayır)</label>
+        <input type="text" id="newModalDirectors" placeholder="Nolan, Spielberg" />
+
+        <button id="newPerformDetailedSearchBtn" class="search-submit-btn">Ara</button>
+    </div>
+</div>
