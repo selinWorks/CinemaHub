@@ -1,0 +1,511 @@
+﻿/*category part*/
+.category-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+    background: linear-gradient(to right, #111, #1a1a1a);
+    border-radius: 16px;
+}
+
+.cat-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+    .cat-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        transition: left 0.4s ease;
+    }
+
+    .cat-btn:hover {
+        transform: scale(1.08);
+    }
+
+        .cat-btn:hover::before {
+            left: 0;
+        }
+
+    .cat-btn.all::before {
+        background: linear-gradient(120deg, #fcb69f, #ffecd2, #a1c4fd, #c2e9fb, #d4fc79);
+    }
+
+    .cat-btn.action::before {
+        background: linear-gradient(120deg, #ff0000, #990000);
+    }
+
+    .cat-btn.comedy::before {
+        background: linear-gradient(120deg, #ffe600, #ff9900);
+    }
+
+    .cat-btn.drama::before {
+        background: linear-gradient(120deg, #8B0000, #4B0082);
+    }
+
+    .cat-btn.scifi::before {
+        background: linear-gradient(120deg, #00ffff, #0044ff);
+    }
+
+    .cat-btn.fantasy::before {
+        background: linear-gradient(120deg, #9400D3, #4B0082);
+    }
+
+    .cat-btn.horror::before {
+        background: linear-gradient(120deg, #111111, #B22222);
+    }
+
+/* Bir butona bu animasyonu uygulamak için */
+/* .cat-btn.action:hover { animation: pulseGlow 1.5s infinite alternate; } */ /* Sadece hover'da */
+/* Veya varsayılan olarak (sürekli) */
+/* .cat-btn.action { animation: pulseGlow 2s infinite alternate; } */
+
+/* search part */
+.fancy-search {
+    position: relative;
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+    .fancy-search input {
+        width: 100%;
+        padding: 1rem 4rem;
+        border-radius: 50px;
+        border: 2px solid transparent;
+        font-size: 1.2rem;
+        color: #fff;
+        background: #0a0a0a;
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.6), inset 0 0 10px #ffcc00;
+        transition: all 0.3s ease;
+        outline: none;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+        .fancy-search input::placeholder {
+            color: #ffdd66;
+            font-weight: 600;
+            font-style: italic;
+            letter-spacing: 1.2px;
+        }
+
+        .fancy-search input:focus {
+            border-color: #ffcc00;
+            box-shadow: 0 0 15px #ffcc00, inset 0 0 20px #ffdd33;
+            background: #1a1a1a;
+        }
+
+    .fancy-search::before {
+        content: "🎥";
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.6rem;
+        color: #ffcc00;
+        text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffd633;
+        pointer-events: none;
+        transition: transform 0.3s ease;
+    }
+
+    .fancy-search input:focus + ::before {
+        transform: translateY(-50%) scale(1.2);
+    }
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px #ffcc00, inset 0 0 20px #ffdd33;
+    }
+
+    50% {
+        box-shadow: 0 0 25px #ffdd66, inset 0 0 30px #fff07a;
+    }
+}
+
+.fancy-search input:focus {
+    animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Haftanın Filmleri Slider */
+/* Ana Başlık Metni */
+.weekly-highlight-main-title {
+    margin-top:3rem;
+    margin-left:290px;
+    font-family: 'Quicksand', sans-serif; /* Mevcut projenizin fontunu kullanıyoruz */
+    font-size: 3.8rem; /* Daha büyük ve iddialı bir boyut */
+    font-weight: 900; /* Quicksand'ın en kalın hali */
+    letter-spacing: 3px; /* Harfler arası boşluğu artır */
+    text-transform: uppercase;
+    color: #fce38a; /* Daha parlak, canlı bir altın rengi */
+    /* Gelişmiş Metin Gölgesi ve Derinlik Efekti */
+    text-shadow: 1px 1px 0 #2c0000, /* Hafif bordo gölge 1 */
+    2px 2px 0 #3a0000, /* Hafif bordo gölge 2 */
+    3px 3px 0 #480000, /* Hafif bordo gölge 3 */
+    4px 4px 0 #560000, /* Hafif bordo gölge 4 */
+    5px 5px 0 #640000, /* Hafif bordo gölge 5 */
+    6px 6px 0 #720000, /* Hafif bordo gölge 6 */
+    7px 7px 0 #800000, /* Hafif bordo gölge 7 */
+    8px 8px 15px rgba(139, 0, 0, 0.7), /* Derin bordo parlama */
+    0 0 20px rgba(252, 227, 138, 0.8), /* Canlı altın parlama */
+    0 0 40px rgba(252, 227, 138, 0.5); /* Geniş altın parlama */
+
+    display: inline-flex;
+    gap: 20px; /* Yıldızlar ile metin arasına daha fazla boşluk */
+    padding: 20px 50px; /* Bol iç boşluk */
+    border-radius: 15px; /* Daha belirgin yuvarlak köşeler */
+   margin-bottom:-10rem;
+
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    cursor: default; /* İmleç değişmesin */
+    /* Başlangıç animasyonları */
+    opacity: 0;
+    transform: translateY(50px) scale(0.85);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out; /* Daha uzun ve dramatik giriş */
+}
+
+
+    /* Başlık yüklendiğinde */
+    .weekly-highlight-main-title.loaded {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+
+    /* Derinlik ve Metin Kontrastı için İkinci Gölge Katmanı */
+    .weekly-highlight-main-title::after {
+        content: attr(data-text); /* Metnin bir kopyası */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: transparent; /* Metni görünmez yap */
+        /* Aynı gölgeleri tekrar uygula, daha güçlü bir etki için */
+        text-shadow: 1px 1px 0 #2c0000, 2px 2px 0 #3a0000, 3px 3px 0 #480000, 4px 4px 0 #560000, 5px 5px 0 #640000, 6px 6px 0 #720000, 7px 7px 0 #800000;
+        /* Hafif bir blur ile derinlik hissini artır */
+        filter: blur(0.5px);
+        z-index: 2; /* Metnin üzerinde (gölge gibi) */
+        pointer-events: none;
+        animation: textDepthPulse 4s ease-in-out infinite; /* Hafif nabız efekti */
+    }
+/* Animasyon Keyframes */
+
+
+
+@keyframes backgroundFade {
+    0%, 100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Genel Kapsayıcı: Slider'ın boyutunu ve konumunu belirler */
+.weekly-highlight-section {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* İstediğiniz maksimum genişlik */
+    height: 600px; /* Slider'ın yüksekliği */
+    margin: 40px auto 50px auto; /* Üstte ve altta boşluk */
+    overflow: hidden; /* Taşmaları gizle */
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    background-color: #1a1a1a; /* Arka plan rengi */
+}
+
+
+
+/* Başlık */
+/* Başlık Kapsayıcısı */
+
+
+/* Slider Alanı */
+.highlight-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%; /* Kapsayıcı ile aynı yükseklik */
+    overflow: hidden; /* Kaydırma efektini sağlamak için */
+}
+
+.highlight-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* İçerideki slaytların taşmasını gizle */
+}
+
+.slider-track {
+    display: flex; /* Slaytları yan yana diz */
+    height: 100%;
+    transition: transform 0.8s ease-in-out; /* Kaydırma animasyonu */
+}
+
+.highlight-slide {
+    min-width: 100%; /* Her slayt slider genişliğinin %100'ü kadar yer kaplar */
+    height: 100%;
+    position: relative;
+    overflow: hidden; /* İçindeki resmin taşmasını gizle */
+}
+
+    .highlight-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Resmi kapsayıcıya sığdırır, oranını korur */
+        display: block; /* Altındaki boşluğu kaldırır */
+        filter: brightness(0.7); /* Resmi biraz karart */
+    }
+
+.slide-info {
+    position: absolute;
+    bottom: 20px;
+    left: 40px; /* Başlangıçta daha içeride olsun */
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    z-index: 5; /* Butonların altında kalsın */
+    opacity: 0; /* JS ile görünür yapılacak */
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+    .slide-info.active { /* Aktif slaytın bilgisi görünür olacak */
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+/* Kaydırma Butonları */
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 15px 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10; /* Resim ve overlay'in üstünde olsun */
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+    .slider-button:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+.prev-button {
+    left: 20px;
+}
+
+.next-button {
+    right: 20px;
+}
+
+/* Resmin üzerine gelen karartma */
+.highlight-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 2; /* Resmin üstünde, içeriğin altında */
+}
+
+/* İçerik (Başlık, Açıklama, Butonlar) - Slider'ın üzerinde dinamik olarak değişebilir */
+.highlight-content {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+    z-index: 3; /* Overlay'in üstünde olsun */
+    color: #fff;
+    opacity: 0; /* JS ile görünür yapılacak */
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+    .highlight-content.loaded {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+
+.highlight-title {
+    margin-left:2rem;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+.highlight-description {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    max-width: 600px;
+}
+
+.highlight-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.details-btn,
+.add-to-list-btn {
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.details-btn {
+    background-color: #ffd700; /* Altın sarısı */
+    color: #1a1a1a;
+}
+
+    .details-btn:hover {
+        background-color: #ffeb3b;
+        transform: translateY(-2px);
+    }
+
+.add-to-list-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+    .add-to-list-btn:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+
+
+
+/* Movie Strip Styles */
+.movie-strip-container {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.movie-strip {
+    overflow-x: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    display: flex;
+    scroll-behavior: smooth;
+}
+
+    .movie-strip::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+.movie-strip-inner {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: scroll-right linear infinite;
+    animation-duration: var(--scroll-duration, 1000s);
+}
+
+.movie-strip.paused .movie-strip-inner {
+    animation-play-state: paused;
+}
+
+.movie-card {
+    background-color: #374151;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: transform 0.3s;
+    width: 200px;
+    flex-shrink: 0;
+    cursor: pointer;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .movie-card:hover {
+        transform: scale(1.05);
+    }
+
+    .movie-card img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+    }
+
+    .movie-card .movie-card-meta {
+        font-size: 0.9rem;
+        color: #aaa;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .movie-card .movie-card-details-link {
+        display: block;
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+        padding: 0.5rem;
+        text-decoration: none;
+        margin-top: auto;
+        transition: background-color 0.3s ease;
+    }
+
+        .movie-card .movie-card-details-link:hover {
+            background-color: #45a049;
+        }
+
+@keyframes scroll-right {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-20%);
+    }
+}
+
+
+
+/* Blur effect for main content when modal is active */
+.blurred {
+    filter: blur(4px);
+}

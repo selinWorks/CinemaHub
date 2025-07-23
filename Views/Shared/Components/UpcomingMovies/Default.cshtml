@@ -1,0 +1,42 @@
+﻿@model List<UpcomingMovie>
+@using CinemaHub.Components @* Bu satırı kendi projenizin namespace'iyle güncelledim! *@
+@* Eğer UpcomingMovie modeli Models klasöründe ve farklı bir namespace'te ise,
+   o zaman aşağıdaki satırı kullanıp yukarıdakini yorum satırı yapın: *@
+@* @using CinemaHub.Models *@
+
+<div class="coming-soon-header">
+    <div style="margin-left:200px">
+        <img src="~/images/theCinema.png" alt="The Cinema Logo" style="max-width: 300px; height: auto;" />
+    </div>
+    <div class="wrapper">
+        <h1>coming soon</h1>
+    </div>
+</div>
+
+<div class="upcoming-movies-section">
+    <div class="upcoming-movies-strip">
+        <div class="upcoming-movies-inner" id="upcomingMoviesInner">
+            @foreach (var movie in Model)
+            {
+                <div class="upcoming-movie-card">
+                    <img src="@Url.Content(movie.Poster)" alt="@movie.Title">
+                    <div class="release-date-tag">@movie.ReleaseDate</div>
+                    <div class="upcoming-movie-card-title">@movie.Title</div>
+                    <a href="@movie.DetailsLink" class="add-reminder-btn">Details / Remind Me</a>
+                </div>
+            }
+        </div>
+    </div>
+    <button class="slider-button prev-upcoming-button"><i class="fas fa-chevron-left"></i></button>
+    <button class="slider-button next-upcoming-button"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+@* JavaScript dosyası hala ana layout'ta veya @section Scripts içinde bağlı kalacak *@
+    @* Kaydırma butonları (eğer kullanılıyorsa) *@
+    @*
+    <button class="slider-button prev-upcoming-button"><i class="fas fa-chevron-left"></i></button>
+    <button class="slider-button next-upcoming-button"><i class="fas fa-chevron-right"></i></button>
+    *@
+</div>
+
+@* JavaScript dosyasını burada bağlamayın! Bu, ana layout dosyasında yapılmalı. *@

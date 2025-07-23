@@ -1,0 +1,290 @@
+﻿
+/* Blur effect for main content when modal is active */
+.blurred {
+    filter: blur(4px);
+}
+
+/* Genel Kapsayıcı Stil (Hem "The Cinema" hem de "COMING SOON" için) */
+/* Genel Kapsayıcı Stil (Hem "The Cinema" hem de "COMING SOON" için) */
+.coming-soon-header {
+    margin-top: 5rem;
+    text-align: center; /* İçindeki metinleri ortalar */
+    width: fit-content; /* İçeriğine göre genişlik alır */
+    margin-right: auto; /* Ortalamak için */
+    margin-left: auto; /* Ortalamak için */
+    opacity: 0; /* JS ile canlandırılacak */
+    transform: translateY(30px); /* JS ile canlandırılacak */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* JS ile canlandırılacak */
+    display: block; /* Tam genişlikte blok elemanı yapar */
+    position: relative; /* Başlığa göre konumlandırma için */
+    padding-bottom: 20px; /* Başlıklar arası boşluk */
+}
+
+    /* Başlık yüklendikten sonraki animasyon durumu */
+    .coming-soon-header.loaded {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+.wrapper {
+    margin-top: -50px; /* PNG ile arasındaki dikey boşluğu ayarlar */
+    position: relative; /* İçindeki h1'e göre konumlandırma için */
+    display: inline-block; /* Genişliği içeriğine göre ayarlar */
+    padding: 0 10px; /* İç boşluk */
+}
+
+    /* 'h1' etiketi - "coming soon" metni */
+    .wrapper h1 {
+        font-family: 'Press Start 2P', cursive; /* Daha belirgin retro pixel/arcade fontu */
+        font-size: 3.5rem; /* Boyutunu küçülttük, daha okunaklı ve pixel art stiline uygun */
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem; /* Harf aralığını biraz daralttık */
+        color: #ffde2d; /* Parlak altın sarısı */
+        text-shadow: -2px -2px 0 #000, /* Siyah dış çizgi */
+        2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 4px 4px 0 #9e0c0c, /* Koyu kırmızı derinlik gölgesi */
+        5px 5px 0 #9e0c0c,
+        /* Metne retro parıltı efekti */
+        0 0 10px rgba(255, 223, 0, 0.4), /* Hafif altın sarısı parlama */
+        0 0 20px rgba(255, 100, 0, 0.2); /* Hafif turuncu/kırmızı parlama */
+        margin: 0; /* Varsayılan h1 marginlerini sıfırla */
+        padding: 15px 30px; /* İç boşluk */
+        position: relative;
+        z-index: 2; /* Diğer elementlerin üzerinde olsun */
+        /* Metin üzerinde hafif bir animasyon - Titreme ve Hafif Parıltı */
+        animation: textFlickerRetro 1.8s infinite alternate steps(1), textSubtleGlow 2.5s infinite alternate ease-in-out;
+    }
+
+/* 'h1' için Animasyon Keyframes */
+
+/* Retro Ekran Titremesi ve Kesilme Efekti */
+@keyframes textFlickerRetro {
+    0%, 100% {
+        opacity: 1;
+        transform: translate(0, 0); /* Konumda değişiklik yok */
+        text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 4px 4px 0 #9e0c0c, 5px 5px 0 #9e0c0c, 0 0 10px rgba(255, 223, 0, 0.4), 0 0 20px rgba(255, 100, 0, 0.2);
+    }
+
+    10% { /* Kısa bir kesilme veya hafif kayma */
+        opacity: 0.9;
+        transform: translate(1px, -1px);
+    }
+
+    20%, 22% { /* Anlık daha belirgin kesilme */
+        opacity: 0.7;
+        transform: translate(-2px, 2px);
+        text-shadow: none; /* Gölgeyi kaldırarak daha belirgin kesilme hissi */
+    }
+
+    30%, 35% { /* Normal duruma dönüş ve hafif titreme */
+        opacity: 1;
+        transform: translate(0.5px, 0.5px);
+    }
+
+    40%, 42% { /* Başka bir kısa kesilme */
+        opacity: 0.8;
+        transform: translate(1.5px, 1.5px);
+        text-shadow: none;
+    }
+
+    50% { /* Hafif parlama */
+        opacity: 1;
+        text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 4px 4px 0 #9e0c0c, 5px 5px 0 #9e0c0c, 0 0 15px rgba(255, 223, 0, 0.6), 0 0 25px rgba(255, 100, 0, 0.3); /* Daha güçlü parlama */
+    }
+
+    60%, 65% { /* Tekrar normal */
+        opacity: 1;
+        transform: translate(-0.5px, 0.5px);
+    }
+
+    70% { /* Son bir mini kesilme */
+        opacity: 0.9;
+        transform: translate(-1px, 1px);
+    }
+}
+
+/* Metin için Yumuşak Parlama Animasyonu (Titremeye ek olarak) */
+@keyframes textSubtleGlow {
+    0%, 100% {
+        filter: brightness(1); /* Normal parlaklık */
+        text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 4px 4px 0 #9e0c0c, 5px 5px 0 #9e0c0c, 0 0 10px rgba(255, 223, 0, 0.4), 0 0 20px rgba(255, 100, 0, 0.2);
+    }
+
+    50% {
+        filter: brightness(1.15); /* Hafifçe daha parlak */
+        text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 4px 4px 0 #9e0c0c, 5px 5px 0 #9e0c0c, 0 0 18px rgba(255, 223, 0, 0.7), 0 0 30px rgba(255, 100, 0, 0.4); /* Daha belirgin parlama */
+    }
+}
+
+
+
+/* Yakında Çıkacaklar Bölümünün Genel Kapsayıcısı */
+.upcoming-movies-section {
+    width: 100%; /* Tam genişlik */
+    max-width: 1200px; /* Maksimum genişlik sınırı */
+    margin: 1rem auto; /* Üstte ve altta boşluk, yatayda ortalar */
+    overflow: hidden; /* Yatay kaydırma çubuğunu gizler */
+    position: relative; /* İçerideki butonlar veya diğer öğeler için referans */
+}
+
+/* Filmlerin yatay olarak kaydırıldığı şerit */
+.upcoming-movies-strip {
+    overflow-x: auto; /* Yatay kaydırma çubuğunu etkinleştirir */
+    -ms-overflow-style: none; /* IE ve Edge'de kaydırma çubuğunu gizler */
+    scrollbar-width: none; /* Firefox'ta kaydırma çubuğunu gizler */
+    display: flex; /* İçeriklerini esnek kutu olarak düzenler */
+    scroll-behavior: smooth; /* Kaydırma animasyonunu yumuşatır */
+}
+
+    /* Webkit tarayıcılarda (Chrome, Safari, Opera) kaydırma çubuğunu gizler */
+    .upcoming-movies-strip::-webkit-scrollbar {
+        display: none;
+    }
+
+/* Filmlerin gerçekten kaydığı iç kısım */
+.upcoming-movies-inner {
+    display: flex; /* İçeriklerini esnek kutu olarak düzenler */
+    gap: 1rem; /* Film kartları arasındaki boşluk */
+    width: max-content; /* İçeriğin toplam genişliğine göre ayarlanır */
+}
+
+/* Yakında Çıkacak Film Kartlarının Temel Stilleri */
+.upcoming-movie-card {
+    background-color: #2a2a35; /* Koyu gri arka plan */
+    border-radius: 0.5rem; /* Köşe yuvarlaklığı */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Gölge efekti */
+    overflow: hidden; /* Taşmayı gizler */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover efekti için geçiş animasyonu */
+    width: 220px; /* Kart genişliği */
+    flex-shrink: 0; /* Küçülmesini engeller */
+    cursor: pointer; /* Fare imleci işaretçi olur */
+    color: white; /* Metin rengi */
+    margin-top: 10px; /* Üst boşluk */
+    margin-bottom: 10px; /* Alt boşluk */
+    display: flex; /* İçeriğini esnek kutu olarak düzenler */
+    flex-direction: column; /* İçerikleri dikey hizalar */
+    position: relative; /* Yayın tarihi etiketi için referans */
+    /* Yeni Görünür Olma Animasyonu Stilleri */
+    opacity: 0; /* Başlangıçta görünmez yap */
+    transform: translateY(50px); /* Başlangıçta biraz aşağıda */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Animasyon geçiş süresi */
+}
+
+    /* Kartın üzerine gelindiğinde büyüme ve gölge efekti */
+    .upcoming-movie-card:hover {
+        transform: scale(1.06); /* %6 büyür */
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* Gölge daha belirginleşir */
+    }
+
+    /* Kartın görünür hale geldiğinde uygulanacak animasyon sınıfı */
+    .upcoming-movie-card.animate-visible {
+        animation: slideUpFadeIn 0.8s ease-out forwards; /* 0.8 saniyede çalışır, sonunda kalır */
+    }
+
+    /* Film posteri resminin stilleri */
+    .upcoming-movie-card img {
+        width: 100%; /* Kart genişliğini doldurur */
+        height: 300px; /* Sabit yükseklik */
+        object-fit: cover; /* Resmi kutuya sığacak şekilde kırpar */
+        filter: brightness(0.85); /* Hafif karartma */
+        transition: filter 0.3s ease; /* Geçiş animasyonu */
+    }
+
+    /* Posterin üzerine gelindiğinde parlaklık artar */
+    .upcoming-movie-card:hover img {
+        filter: brightness(1); /* Tam parlaklık */
+    }
+
+/* Film başlığının stilleri */
+.upcoming-movie-card-title {
+    font-size: 1.1rem; /* Yazı boyutu */
+    font-weight: 700; /* Kalınlık */
+    padding: 0.8rem 1rem 0.4rem; /* İç boşluk */
+    text-align: center; /* Ortalar */
+    line-height: 1.3; /* Satır yüksekliği */
+}
+
+/* Yayın tarihi etiketinin stilleri */
+.release-date-tag {
+    position: absolute; /* Mutlak pozisyonlandırma */
+    top: 10px; /* Üstten boşluk */
+    right: 10px; /* Sağdan boşluk */
+    background-color: rgba(255, 215, 0, 0.9); /* Altın sarısı yarı şeffaf arka plan */
+    color: #1a1a1a; /* Koyu metin rengi */
+    padding: 5px 10px; /* İç boşluk */
+    border-radius: 5px; /* Köşe yuvarlaklığı */
+    font-size: 0.85rem; /* Yazı boyutu */
+    font-weight: 600; /* Kalınlık */
+    z-index: 2; /* Diğer öğelerin üzerinde görünür */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Gölge */
+    text-align: center; /* Ortalar */
+}
+
+/* "Detaylar / Hatırlat" butonunun stilleri */
+.add-reminder-btn {
+    display: block; /* Tam genişlikte blok elementi */
+    background-color: #007bff; /* Mavi arka plan */
+    color: white; /* Beyaz metin */
+    text-align: center; /* Ortalar */
+    padding: 0.6rem; /* İç boşluk */
+    text-decoration: none; /* Alt çizgiyi kaldırır */
+    margin-top: auto; /* Kartın alt kısmına hizalar */
+    transition: background-color 0.3s ease; /* Hover efekti için geçiş */
+    font-size: 0.9rem; /* Yazı boyutu */
+    font-weight: 600; /* Kalınlık */
+    border-top: 1px solid rgba(255,255,255,0.1); /* Üst kenarlık */
+}
+
+    /* Butonun üzerine gelindiğinde arka plan rengi değişir */
+    .add-reminder-btn:hover {
+        background-color: #0056b3; /* Daha koyu mavi */
+    }
+
+/* Yeni Kaydırma Tuşları İçin Stiller */
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.5rem;
+    border-radius: 50%; /* Yuvarlak butonlar için */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Genişlik */
+    height: 50px; /* Yükseklik */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+    .slider-button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+.prev-upcoming-button {
+    left: 20px;
+}
+
+.next-upcoming-button {
+    right: 20px;
+}
+
+/* "Slide Up Fade In" animasyonu (Kartlar için) */
+@keyframes slideUpFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
