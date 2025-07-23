@@ -1,0 +1,68 @@
+﻿@model List<CinemaHub.Models.Movie>
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+@* Özel CSS ve JS dosyalarını ekleyin *@
+@section Styles {
+    <link rel="stylesheet" href="~/css/moviespage.css" />
+    @* Monoton fontunu buraya veya _Layout.cshtml'ye eklediğinizden emin olun *@
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    @* Press Start 2P fontu için CDN (Eğer _Layout.cshtml'de yoksa) *@
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+}
+
+@* Tüm sayfanın ortasında yer alacak bir başlık *@
+<div class="page-header-container">
+    <h1 class="movies-page-title" data-text="MOVIES">MOVIES</h1>
+</div>
+
+@* Film Filtreleme / Arama Bölümü *@
+<div class="filter-search-container">
+    <div class="fancy-search movies-search">
+        <input type="text" id="movieSearchInput" placeholder="Search for movies...">
+    </div>
+
+    <div class="category-filter-bar">
+        <button class="cat-btn filter-btn all active" data-category="all">ALL</button>
+        <button class="cat-btn filter-btn action" data-category="Action">ACTION</button>
+        <button class="cat-btn filter-btn comedy" data-category="Comedy">COMEDY</button>
+        <button class="cat-btn filter-btn drama" data-category="Drama">DRAMA</button>
+        <button class="cat-btn filter-btn scifi" data-category="Sci-Fi">SCI-FI</button>
+        <button class="cat-btn filter-btn fantasy" data-category="Fantasy">FANTASY</button>
+        <button class="cat-btn filter-btn horror" data-category="Horror">HORROR</button>
+    </div>
+</div>
+
+
+@* Filmlerin Listelendiği Bölüm *@
+<div class="movie-grid-container">
+    <div class="movie-grid" id="movieGrid">
+        @foreach (var movie in Model)
+        {
+            <div class="movie-card" data-category="@movie.Category.ToLower()"
+                 data-actors="@string.Join(",", movie.Actors).ToLower()"
+                 data-directors="@string.Join(",", movie.Directors).ToLower()"
+                 data-title="@movie.Title.ToLower()">
+                @* Arama için ek veriler *@
+                <img src="@Url.Content(movie.Src)" alt="@movie.Title Poster">
+                <div class="movie-card-content">
+                    <h3 class="movie-card-title">@movie.Title</h3>
+                    <p class="movie-card-genre">@movie.Category</p>
+                    <p class="movie-card-release">Year: @movie.ReleaseYear</p>
+                    <p class="movie-card-rating">IMDB: @movie.ImdbRating <i class="fas fa-star gold-star"></i></p>
+                    @* Detay linki şimdilik yok, tıklanabilir bir kart yapısı veya basit bir link olabilir *@
+                    <a href="#" class="movie-details-btn" data-movie-id="@movie.Id">View Details</a>
+                </div>
+            </div>
+        }
+    </div>
+    <p id="noResultsMessage" style="color: #fff; text-align: center; display: none; margin-top: 2rem; font-size: 1.2rem;">No movies found for your search/filter criteria.</p>
+</div>
+
+@section Scripts {
+    <script src="~/js/moviespage.js"></script>
+    @* Font Awesome için CDN (Eğer projenizde yoksa) *@
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script> @* Kendi kit ID'nizi buraya ekleyin *@
+}

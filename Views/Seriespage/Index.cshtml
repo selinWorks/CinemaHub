@@ -1,0 +1,69 @@
+﻿@model List<CinemaHub.Models.Series>
+
+@{
+    ViewData["Title"] = "Series";
+}
+
+@* Özel CSS ve JS dosyalarını ekleyin *@
+@section Styles {
+    <link rel="stylesheet" href="~/css/seriespage.css" /> @* seriespage.css'i kullanacak *@
+    @* Monoton fontunu buraya veya _Layout.cshtml'ye eklediğinizden emin olun *@
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    @* Press Start 2P fontu için CDN (Eğer _Layout.cshtml'de yoksa) *@
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+}
+
+@* Tüm sayfanın ortasında yer alacak bir başlık *@
+<div class="page-header-container">
+    <h1 class="series-page-title" data-text="SERIES">SERIES</h1> @* Başlık metni değişti *@
+</div>
+
+@* Dizi Filtreleme / Arama Bölümü *@
+<div class="filter-search-container">
+    <div class="fancy-search series-search">
+        @* Sınıf ismi değişti *@
+        <input type="text" id="seriesSearchInput" placeholder="Search for series..."> @* ID ve Placeholder değişti *@
+    </div>
+
+    <div class="category-filter-bar">
+        <button class="cat-btn filter-btn all active" data-category="all">ALL</button>
+        <button class="cat-btn filter-btn action" data-category="Action">ACTION</button>
+        <button class="cat-btn filter-btn comedy" data-category="Comedy">COMEDY</button>
+        <button class="cat-btn filter-btn drama" data-category="Drama">DRAMA</button>
+        <button class="cat-btn filter-btn scifi" data-category="Sci-Fi">SCI-FI</button>
+        <button class="cat-btn filter-btn fantasy" data-category="Fantasy">FANTASY</button>
+        <button class="cat-btn filter-btn horror" data-category="Horror">HORROR</button>
+    </div>
+</div>
+
+
+@* Dizilerin Listelendiği Bölüm *@
+<div class="movie-grid-container">
+    @* Bu sınıfı 'series-grid-container' olarak da değiştirebiliriz ama CSS'in çoğu zaten ortak *@
+    <div class="movie-grid" id="seriesGrid">
+        @* ID değişti *@
+        @foreach (var seriesItem in Model) @* Model adı değişti *@
+        {
+            <div class="movie-card" data-category="@seriesItem.Category.ToLower()"
+                 data-actors="@string.Join(",", seriesItem.Actors).ToLower()"
+                 data-directors="@string.Join(",", seriesItem.Directors).ToLower()"
+                 data-title="@seriesItem.Title.ToLower()">
+                <img src="@Url.Content(seriesItem.Src)" alt="@seriesItem.Title Poster">
+                <div class="movie-card-content">
+                    <h3 class="movie-card-title">@seriesItem.Title</h3>
+                    <p class="movie-card-genre">@seriesItem.Category</p>
+                    <p class="movie-card-release">Year: @seriesItem.ReleaseYear</p>
+                    <p class="movie-card-rating">IMDB: @seriesItem.ImdbRating <i class="fas fa-star gold-star"></i></p>
+                    <a href="#" class="movie-details-btn" data-series-id="@seriesItem.Id">View Details</a> @* data-movie-id yerine data-series-id *@
+                </div>
+            </div>
+        }
+    </div>
+    <p id="noResultsMessageSeries" style="color: #fff; text-align: center; display: none; margin-top: 2rem; font-size: 1.2rem;">No series found for your search/filter criteria.</p> @* ID değişti *@
+</div>
+
+@section Scripts {
+    <script src="~/js/seriespage.js"></script> @* seriespage.js'i kullanacak *@
+    @* Font Awesome için CDN (Eğer projenizde yoksa) *@
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script> @* Kendi kit ID'nizi buraya ekleyin *@
+}

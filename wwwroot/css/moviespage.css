@@ -1,0 +1,493 @@
+﻿/* Genel Ayarlar ve Fontlar */
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #0d0d0d; /* Ana tema arka planı */
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Sayfa Başlığı */
+.page-header-container {
+    text-align: center;
+    margin: 4rem auto 2rem auto;
+    width: fit-content;
+    position: relative;
+    overflow: hidden; /* Animasyonlu çizgiler için */
+    padding: 0 20px;
+}
+
+.movies-page-title {
+    font-family: 'Monoton', monospace; /* Veya 'Press Start 2P' */
+    font-size: 5.5rem; /* Daha büyük ve etkileyici */
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    color: #fce38a; /* Parlak altın rengi */
+    text-shadow: 0 0 10px rgba(252, 227, 138, 0.7), /* Altın neon parlama */
+    0 0 20px rgba(252, 227, 138, 0.5), 0 0 30px rgba(255, 165, 0, 0.3); /* Hafif turuncu/altın yayılım */
+    position: relative;
+    display: inline-block;
+    padding: 10px 0;
+    margin-top: -15px;
+    margin-bottom: -25px;
+    /* Başlık animasyonları */
+    animation: neonGlowPulse 2.5s infinite alternate ease-in-out, textFlickerSubtle 1.8s infinite alternate steps(1);
+}
+
+/* Başlık için animasyon keyframes */
+@keyframes neonGlowPulse {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(252, 227, 138, 0.7), 0 0 20px rgba(252, 227, 138, 0.5), 0 0 30px rgba(255, 165, 0, 0.3);
+    }
+
+    50% {
+        text-shadow: 0 0 15px rgba(252, 227, 138, 0.9), 0 0 25px rgba(252, 227, 138, 0.7), 0 0 40px rgba(255, 165, 0, 0.5);
+    }
+}
+
+@keyframes textFlickerSubtle {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+    }
+
+    20%, 24%, 55% {
+        opacity: 0.8;
+    }
+
+    30% { /* Kısa bir parlama artışı */
+        opacity: 1;
+        text-shadow: 0 0 12px rgba(252, 227, 138, 0.8), 0 0 22px rgba(252, 227, 138, 0.6), 0 0 35px rgba(255, 165, 0, 0.4);
+    }
+}
+
+
+/* Filtre ve Arama Bölümü */
+.filter-search-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column; /* Mobil uyumluluk için varsayılan dikey */
+    gap: 1.5rem;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .filter-search-container {
+        flex-direction: row; /* Geniş ekranlarda yatay */
+        justify-content: space-between;
+    }
+}
+
+
+/* Kategori Butonları (Mevcut stillerinizden) */
+.category-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem; /* Daha dar boşluklar */
+    padding: 1rem 0; /* İç boşluğu ayarla */
+    /* background: linear-gradient(to right, #111, #1a1a1a);  Kaldırıldı, kapsayıcıya background verildi */
+    border-radius: 12px;
+    flex-grow: 1; /* Mevcut yatay alana yayılmaya çalışır */
+}
+
+.cat-btn {
+    padding: 0.8rem 1.2rem; /* Daha kompakt */
+    font-size: 0.95rem; /* Biraz küçült */
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #2a2a35; /* Varsayılan koyu arka plan */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Hafif kenarlık */
+    cursor: pointer; /* Buton olduğu için imleç */
+}
+
+    .cat-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        transition: left 0.4s ease;
+    }
+
+    .cat-btn:hover {
+        transform: scale(1.05); /* Hafif büyüme */
+        box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+    }
+
+        .cat-btn:hover::before {
+            left: 0;
+        }
+
+    /* Kategori renkleri */
+    .cat-btn.all::before {
+        background: linear-gradient(120deg, #fcb69f, #ffecd2, #a1c4fd, #c2e9fb, #d4fc79);
+    }
+
+    .cat-btn.action::before {
+        background: linear-gradient(120deg, #ff0000, #990000);
+    }
+
+    .cat-btn.comedy::before {
+        background: linear-gradient(120deg, #ffe600, #ff9900);
+    }
+
+    .cat-btn.drama::before {
+        background: linear-gradient(120deg, #8B0000, #4B0082);
+    }
+
+    .cat-btn.scifi::before {
+        background: linear-gradient(120deg, #00ffff, #0044ff);
+    }
+
+    .cat-btn.fantasy::before {
+        background: linear-gradient(120deg, #9400D3, #4B0082);
+    }
+
+    .cat-btn.horror::before {
+        background: linear-gradient(120deg, #111111, #B22222);
+    }
+
+    /* Aktif buton stili */
+    .cat-btn.active {
+        transform: scale(1.08); /* Hafifçe daha büyük */
+        box-shadow: 0 0 15px rgba(255, 223, 0, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.3); /* Altın parlama */
+        border-color: #ffcc00; /* Aktifken altın kenarlık */
+    }
+
+        .cat-btn.active::before {
+            left: 0; /* Aktif olduğunda dolgu rengi görünür kalsın */
+        }
+
+/* Arama Kutusu (Mevcut stillerinizden) */
+.fancy-search.movies-search { /* Sınıfı biraz değiştirdim çakışmaması için */
+    max-width: 400px; /* Biraz daha daraltabiliriz */
+    flex-shrink: 0; /* Daraldığında küçülmesini engelle */
+}
+
+    .fancy-search.movies-search input {
+        width: 100%;
+        padding: 1rem 4rem;
+        border-radius: 50px;
+        border: 2px solid transparent;
+        font-size: 1.1rem; /* Biraz küçült */
+        color: #fff;
+        background: #0a0a0a;
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.6), inset 0 0 10px #ffcc00;
+        transition: all 0.3s ease;
+        outline: none;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+        .fancy-search.movies-search input::placeholder {
+            color: #ffdd66;
+            font-weight: 600;
+            font-style: italic;
+            letter-spacing: 1.2px;
+        }
+
+        .fancy-search.movies-search input:focus {
+            border-color: #ffcc00;
+            box-shadow: 0 0 15px #ffcc00, inset 0 0 20px #ffdd33;
+            background: #1a1a1a;
+            animation: pulseGlow 2s infinite ease-in-out; /* Mevcut animasyon */
+        }
+
+    .fancy-search.movies-search::before {
+        content: "🔎"; /* Büyüteç ikonu */
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.6rem;
+        color: #ffcc00;
+        text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffd633;
+        pointer-events: none;
+        transition: transform 0.3s ease;
+    }
+
+    .fancy-search.movies-search input:focus + .fancy-search.movies-search::before {
+        transform: translateY(-50%) scale(1.2);
+    }
+
+
+/* Film Grid Kapsayıcısı */
+.movie-grid-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Responsive grid */
+    gap: 1.5rem;
+    justify-content: center; /* Ortalar */
+}
+
+/* Film Kartları */
+.movie-card {
+    background-color: #1a1a1a; /* Koyu arka plan */
+    border-radius: 0.8rem; /* Daha belirgin yuvarlaklık */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6); /* Daha belirgin gölge */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* Giriş Animasyonu */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+}
+
+    /* Kartın üzerine gelince */
+    .movie-card:hover {
+        transform: translateY(-5px) scale(1.03); /* Hafif yukarı kayma ve büyüme */
+        box-shadow: 0 10px 30px rgba(255, 0, 0, 0.6), /* Belirgin kırmızı parlama (daha yüksek opaklık) */
+        0 0 40px rgba(0, 0, 0, 0.5); /* Altın/turuncu parlama */
+        background-color: #262626; /* Hafif açılma */
+    }
+
+    .movie-card img {
+        width: 100%;
+        height: 320px; /* Biraz daha uzun posterler */
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.85); /* Hafif karartma */
+        transition: filter 0.3s ease;
+    }
+
+    .movie-card:hover img {
+        filter: brightness(1); /* Hover'da tam parlaklık */
+    }
+
+.movie-card-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* İçeriğin kartın kalan alanını doldurmasını sağlar */
+}
+
+.movie-card-title {
+    font-size: 1.25rem; /* Daha büyük başlık */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #fce38a; /* Altın sarısı başlık */
+    text-align: center;
+    line-height: 1.3;
+}
+
+.movie-card-genre,
+.movie-card-release {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-bottom: 0.3rem;
+    text-align: center;
+}
+
+.movie-card-rating {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffdd00; /* Yıldız rengiyle uyumlu */
+    text-align: center;
+    margin-top: 0.5rem;
+    display: flex; /* Yıldız ikonu ile aynı hizaya gelmesi için */
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* Metin ve yıldız arası boşluk */
+}
+
+.gold-star {
+    color: #ffdd00; /* Parlak altın sarısı yıldız */
+}
+
+.movie-details-btn {
+    display: block;
+    background-color: #ffd700; /* Altın sarısı buton */
+    color: #1a1a1a;
+    text-align: center;
+    padding: 0.8rem;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-top: auto; /* Kartın altına hizalar */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+    .movie-details-btn:hover {
+        background-color: #ffeb3b;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
+    }
+
+/* Kartlar için giriş animasyonu */
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Her kartın animasyon gecikmesi */
+.movie-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.movie-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.movie-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.movie-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.movie-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.movie-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.movie-card:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.movie-card:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+.movie-card:nth-child(9) {
+    animation-delay: 0.9s;
+}
+/* Daha fazla kartınız varsa bu listeyi uzatın */
+
+
+/* Responsive Ayarlamalar */
+@media (max-width: 1024px) {
+    .movies-page-title {
+        font-size: 4.5rem;
+        letter-spacing: 0.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .movies-page-title {
+        font-size: 3.5rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .filter-search-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fancy-search.movies-search {
+        width: 90%;
+        max-width: 450px;
+    }
+
+    .category-filter-bar {
+        width: 100%;
+        gap: 0.5rem;
+        justify-content: space-around;
+    }
+
+    .cat-btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .movie-card img {
+        height: 280px;
+    }
+
+    .movie-card-title {
+        font-size: 1.1rem;
+    }
+
+    .movie-details-btn {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .movies-page-title {
+        font-size: 2.5rem;
+        letter-spacing: 0.15rem;
+        padding: 5px 0;
+    }
+
+    .fancy-search.movies-search input {
+        padding: 0.8rem 3.5rem;
+        font-size: 1rem;
+    }
+
+    .fancy-search.movies-search::before {
+        font-size: 1.4rem;
+        left: 15px;
+    }
+
+    .category-filter-bar {
+        padding: 0.5rem 0;
+        gap: 0.4rem;
+    }
+
+    .cat-btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .movie-card img {
+        height: 220px;
+    }
+
+    .movie-card-title {
+        font-size: 1rem;
+    }
+
+    .movie-card-genre,
+    .movie-card-release,
+    .movie-card-rating {
+        font-size: 0.8rem;
+    }
+
+    .movie-details-btn {
+        font-size: 0.8rem;
+        padding: 0.6rem;
+    }
+}
