@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks; // Required for Task
-using CinemaHub.ViewComponents; // Make sure this namespace matches where your ViewComponent is located
+
 
 public class HomeController : Controller
 {

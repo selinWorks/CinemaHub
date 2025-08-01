@@ -8,11 +8,17 @@
     <link rel="stylesheet" href="~/css/homepage.css" />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <!-- Font Awesome ikonları için CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: #0d0d0d;
             color: #fff;
+        }
+        /* BURADAKİ DÜZELTME: highlight-overlay'in fare olaylarını engellemesini önle */
+        .highlight-overlay {
+            pointer-events: none; /* Fare olaylarını altındaki öğelere geçirir */
         }
     </style>
 </head>
@@ -38,9 +44,9 @@
         </p>
 
         <h2 class="weekly-highlight-main-title">
-         Thıs Week's Top Pıcks 
+            This Week's Top Picks
         </h2>
- 
+
         <div class="weekly-highlight-section">
 
             <div class="highlight-image-wrapper">
@@ -49,50 +55,46 @@
                         <div class="highlight-slide">
                             <img src="~/images/percyJackson.jpeg" alt="Percy Jackson and the Olympians" />
                             <div class="slide-info">
-                                
                             </div>
                         </div>
                         <div class="highlight-slide">
                             <img src="~/images/harry-potter.jpg" alt="Harry Potter" />
                             <div class="slide-info">
-                                
                             </div>
                         </div>
                         <div class="highlight-slide">
                             <img src="~/images/avatar.jpg" alt="Avatar" />
                             <div class="slide-info">
-                                
                             </div>
                         </div>
                         <div class="highlight-slide">
                             <img src="~/images/bladeRunner.jpg" alt="Blade Runner 2049" />
                             <div class="slide-info">
-                                
                             </div>
                         </div>
                         <div class="highlight-slide">
                             <img src="~/images/dune-part-two.jpg" alt="Dune: Part Two" />
                             <div class="slide-info">
-                                
                             </div>
                         </div>
                         <div class="highlight-slide">
                             <img src="~/images/guardiansOfGalaxy.jpg" alt="Guardians Of Galaxy" />
                             <div class="slide-info">
-                               
                             </div>
                         </div>
                         <div class="highlight-slide">
                             <img src="~/images/theConjuring.jpg" alt="The Conjuring" />
                             <div class="slide-info">
-                               
                             </div>
                         </div>
                     </div>
                     <button class="slider-button prev-button"><i class="fas fa-chevron-left"></i></button>
                     <button class="slider-button next-button"><i class="fas fa-chevron-right"></i></button>
+
                 </div>
-                <div class="highlight-overlay"></div> <div class="highlight-content">
+                <!-- highlight-overlay'e pointer-events: none; eklendi -->
+                <div class="highlight-overlay"></div>
+                <div class="highlight-content">
                     <h1 class="highlight-title">Movie Title Goes Here</h1>
                     <p class="highlight-description">Short Movie Description.</p>
                     <div class="highlight-actions">
@@ -106,17 +108,17 @@
         </div>
 
         @await Component.InvokeAsync("UpcomingMovies")
-       
+
     </div>
 
     @* Modal Partial View'i burada çağırıyoruz *@
     @Html.Partial("_DetailedSearchModal")
 
     @section Scripts {
-    <script src="~/js/homepage.js" asp-append-version="true"></script>
-    <script src="~/js/detailedSearchModal.js" asp-append-version="true"></script>
+        <script src="~/js/homepage.js" asp-append-version="true"></script>
+        <script src="~/js/detailedSearchModal.js" asp-append-version="true"></script>
         <script src="~/js/upcomingMoviesComponent.js" asp-append-version="true"></script> @* Yeni eklediğiniz satır *@
-}
+    }
 
 </body>
 </html>

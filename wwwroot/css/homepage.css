@@ -396,19 +396,36 @@
         transform: translateY(-2px);
     }
 
+
+/* homepage.css */
+
 .add-to-list-btn {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2); /* Saydam beyaz */
     color: #fff;
     border: 2px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer; /* Tıklanabilir olduğunu göster */
+    /* Diğer stil kuralları */
 }
 
-    .add-to-list-btn:hover {
+    .add-to-list-btn:hover:not(:disabled) {
         background-color: rgba(255, 255, 255, 0.3);
         transform: translateY(-2px);
     }
 
 
-
+    /* Film eklendiğinde uygulanacak sınıf */
+    .add-to-list-btn.added { /* Bu "added" sınıfını JS'de ekleyeceğiz */
+        background-color: rgba(144, 238, 144, 0.7); /* Saydam açık yeşil */
+        color: #222; /* Metin rengi */
+        /* cursor: not-allowed;  --> Bunu kaldırıyoruz veya pointer yapıyoruz */
+        cursor: pointer; /* Listeden çıkarma da tıklanabilir olsun */
+    }
+        /* Film eklendiyse ve üzerine gelindiğinde hafif bir parlama/gölge */
+        .add-to-list-btn.added:hover {
+            background-color: rgba(144, 238, 144, 0.85); /* Hafif daha opak yeşil */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(144, 238, 144, 0.4); /* Hafif yeşil parlama */
+        }
 
 /* Movie Strip Styles */
 .movie-strip-container {
@@ -509,3 +526,19 @@
 .blurred {
     filter: blur(4px);
 }
+
+.added-message {
+    margin-top: 0.5rem;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+    .added-message.show {
+        opacity: 1;
+    }
+
