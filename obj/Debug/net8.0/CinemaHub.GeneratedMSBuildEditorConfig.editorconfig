@@ -32,8 +32,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/hp/source/repos/CinemaHub/CinemaHub/Views/Moviespage/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzcGFnZVxJbmRleC5jc2h0bWw=
+[C:/Users/hp/source/repos/CinemaHub/CinemaHub/Views/Movie/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hp/source/repos/CinemaHub/CinemaHub/Views/MyList/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlMaXN0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/hp/source/repos/CinemaHub/CinemaHub/Views/Seriespage/Index.cshtml]

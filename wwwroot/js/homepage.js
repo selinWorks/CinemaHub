@@ -1,7 +1,4 @@
-﻿// Film verileri API'den çekileceği için 'movies' dizisi kaldırıldı.
-// Artık burada bir fetchMovies fonksiyonu olacak.
-
-console.log("homepage.js yüklendi ve çalışıyor!");
+﻿console.log("homepage.js yüklendi ve çalışıyor!");
 
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elementlerini Seçme
@@ -14,63 +11,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.querySelector('.prev-button');
     const nextButton = document.querySelector('.next-button');
     const highlightTitleElement = document.querySelector('.highlight-title');
-    const highlightDescriptionElement = document.querySelector('.highlight-description'); // Eğer açıklama da gösterecekseniz
-    const weeklyHighlightMainTitle = document.querySelector('.weekly-highlight-main-title'); // "This Week's Top Picks" başlığı
-    const highlightContent = document.querySelector('.highlight-content'); // Slider'ın üzerindeki genel içerik alanı
+    const highlightDescriptionElement = document.querySelector('.highlight-description');
+    const weeklyHighlightMainTitle = document.querySelector('.weekly-highlight-main-title');
+    const highlightContent = document.querySelector('.highlight-content');
 
-    // Featured movie data (currently static, can be fetched from API)
+    // highlightAddToListBtn değişkenini seçiyoruz
+    const highlightAddToListBtn = document.querySelector('.highlight-actions .add-to-list-btn');
+
+    // highlightMovies dizisi (değişmedi)
     const highlightMovies = [
-        {
-            title: "Percy Jackson and the Olympians",
-            image: "percyJackson.jpeg",
-            description: "A teenager discovers he's the son of a Greek god and sets out on an adventure to prevent a war among the gods.",
-            details: "A teenager discovers he's the son of a Greek god and sets out on an adventure to prevent a war among the gods."
-        },
-        {
-            title: "Harry Potter",
-            image: "harry-potter.jpg",
-            description: "An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world.",
-            details: "An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world."
-        },
-        {
-            title: "Avatar",
-            image: "avatar.jpg",
-            description: "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following orders and protecting the world he feels is his home.",
-            details: "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following orders and protecting the world he feels is his home."
-        },
-        {
-            title: "Blade Runner 2049",
-            image: "bladeRunner.jpg",
-            description: "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for 30 years.",
-            details: "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing in 30 years."
-        },
-        {
-            title: "Dune: Part Two",
-            image: "dune-part-two.jpg",
-            description: "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.",
-            details: "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family."
-        },
-        {
-            title: "Guardians Of Galaxy",
-            image: "guardiansOfGalaxy.jpg",
-            description: "A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe.",
-            details: "A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe."
-        },
-        {
-            title: "The Conjuring",
-            image: "theConjuring.jpg",
-            description: "Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse.",
-            details: "Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse."
-        }
+        { title: "Percy Jackson and the Olympians", image: "percyJackson.jpeg", description: "A teenager discovers he's the son of a Greek god and sets out on an adventure to prevent a war among the gods.", details: "A teenager discovers he's the son of a Greek god and sets out on an adventure to prevent a war among the gods." },
+        { title: "Harry Potter", image: "harry-potter.jpg", description: "An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world.", details: "An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world." },
+        { title: "Avatar", image: "avatar.jpg", description: "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following orders and protecting the world he feels is his home.", details: "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following orders and protecting the world he feels is his home." },
+        { title: "Blade Runner 2049", image: "bladeRunner.jpg", description: "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for 30 years.", details: "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing in 30 years." },
+        { title: "Dune: Part Two", image: "dune-part-two.jpg", description: "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.", details: "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family." },
+        { title: "Guardians Of Galaxy", image: "guardiansOfGalaxy.jpg", description: "A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe.", details: "A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe." },
+        { title: "The Conjuring", image: "theConjuring.jpg", description: "Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse.", details: "Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse." }
     ];
 
     let currentSlide = 0;
     let slideInterval;
     const slideDuration = 7000; // 7 saniye
 
+    // Yardımcı fonksiyon: LocalStorage'dan listeyi alır
+    function getMyList() {
+        return JSON.parse(localStorage.getItem('myList')) || [];
+    }
+
+    // *** updateButtonState FONKSİYONU BURADA TANIMLANIYOR ***
+    // Yardımcı fonksiyon: Butonun durumunu günceller (toggle işlevi için)
+    function updateButtonState(button, filmTitle) {
+        const myList = getMyList();
+        const isInList = myList.some(f => f.title === filmTitle); // Filmin listede olup olmadığını kontrol et
+
+        if (isInList) {
+            // Film listedeyse 'added' sınıfını ekle, metni değiştir ve butonu etkin tut
+            button.classList.add('added'); // CSS'deki .add-to-list-btn.added sınıfını kullanacak
+            button.innerHTML = '<i class="fas fa-check-circle"></i> Added to List';
+            button.disabled = false; // Butonu listeden çıkarmak için tıklanabilir tutuyoruz
+        } else {
+            // Film listede değilse 'added' sınıfını kaldır, metni değiştir
+            button.classList.remove('added');
+            button.innerHTML = '<i class="fas fa-plus-circle"></i> Add to List';
+            button.disabled = false; // Buton zaten tıklanabilir olmalı
+        }
+    }
+    // *** updateButtonState FONKSİYON TANIMLAMASI BURADA BİTİYOR ***
+
+
     // Slider'ı belirli bir slayta kaydırma
     function goToSlide(index) {
-        if (!sliderTrack) { // SliderTrack elementi yoksa çalışma
+        if (!sliderTrack) {
             console.warn("sliderTrack elementi bulunamadı. Slider fonksiyonu devre dışı.");
             return;
         }
@@ -90,14 +81,20 @@ document.addEventListener('DOMContentLoaded', () => {
             highlightTitleElement.textContent = movie.title;
         }
         if (highlightDescriptionElement) {
-            highlightDescriptionElement.textContent = movie.details; // Ya da description
+            highlightDescriptionElement.textContent = movie.details;
         }
 
-        // Slide info'nun görünürlüğünü güncelle (eğer kullanılıyorsa)
+        // Slider'daki "Add to List" butonunun durumunu güncelle
+        // Bu kısım, slider her değiştiğinde butonun doğru durumu göstermesini sağlar.
+        if (highlightAddToListBtn) {
+            updateButtonState(highlightAddToListBtn, movie.title);
+        }
+
+        // Slide info'nun görünürlüğünü güncelle
         const allSlides = document.querySelectorAll('.highlight-slide');
         allSlides.forEach((slide, idx) => {
             const slideInfo = slide.querySelector('.slide-info');
-            if (slideInfo) { // slideInfo elementi varsa işlem yap
+            if (slideInfo) {
                 if (idx === currentSlide) {
                     slideInfo.classList.add('active');
                 } else {
@@ -109,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Otomatik kaydırmayı başlat
     function startAutoSlide() {
-        clearInterval(slideInterval); // Önceki interval'i temizle
+        clearInterval(slideInterval);
         slideInterval = setInterval(() => {
             goToSlide(currentSlide + 1);
         }, slideDuration);
@@ -148,20 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // API'den film verilerini çeken fonksiyon (placeholder)
-    // Bu fonksiyonu kendi API'nize göre güncelleyeceksiniz.
-    // Detaylı arama modalından gelen filtreler bu fonksiyona iletilecek.
     async function fetchMovies(filters = {}) {
         console.log("Filmler API'den çekiliyor, filtreler:", filters);
-        // Örnek: Gerçek bir API çağrısı yapacak kod buraya gelecek
-        // const response = await fetch('/api/movies', {
-        //    method: 'POST',
-        //    headers: { 'Content-Type': 'application/json' },
-        //    body: JSON.stringify(filters)
-        // });
-        // const data = await response.json();
-        // return data;
 
-        // Geçici olarak statik 'allMovies' dizisini döndürüyorum
         const allMovies = [
             { title: "Inception", src: "https://via.placeholder.com/200x280?text=Inception", category: "Bilim Kurgu", imdbRating: 8.8, releaseYear: 2010, actors: ["Leonardo DiCaprio", "Joseph Gordon-Levitt"], directors: ["Christopher Nolan"] },
             { title: "The Dark Knight", src: "https://via.placeholder.com/200x280?text=Dark+Knight", category: "Aksiyon", imdbRating: 9.0, releaseYear: 2008, actors: ["Christian Bale", "Heath Ledger"], directors: ["Christopher Nolan"] },
@@ -182,7 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { title: "Spider-Man: Into the Spider-Verse", src: "https://via.placeholder.com/200x280?text=Spider-Verse", category: "Animasyon", imdbRating: 8.4, releaseYear: 2018, actors: ["Shameik Moore", "Jake Johnson"], directors: ["Bob Persichetti", "Peter Ramsey", "Rodney Rothman"] }
         ];
 
-        // İstemci tarafında filtreleme (API'den tüm veriyi çektiğinizi varsayarsak)
         return allMovies.filter(movie => {
             const matchCategory = (!filters.category || filters.category === 'Tümü') || (movie.category === filters.category);
             const matchSearch = (!filters.searchTerm || movie.title.toLowerCase().includes(filters.searchTerm.toLowerCase()));
@@ -198,15 +183,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // Film kartı oluşturma
     function createMovieCard(movie) {
         const card = document.createElement('div');
-        card.className = 'movie-card';
+        card.className = 'movie-card relative';
         card.title = `${movie.title} - IMDb: ${movie.imdbRating}`;
         card.innerHTML = `
             <img src="${movie.src}" alt="${movie.title}" class="w-full h-40 object-cover rounded-t-md" />
             <div class="p-2">
                 <h3 class="font-semibold truncate">${movie.title}</h3>
                 <p class="text-sm opacity-80 truncate">${movie.category} | IMDb: ${movie.imdbRating} | ${movie.releaseYear}</p>
+                <button class="add-to-list-btn mt-2 w-full text-white py-1 rounded-md text-sm">
+                    <i class="fas fa-plus-circle"></i> Add to List
+                </button>
             </div>
         `;
+
+        const addButton = card.querySelector('.add-to-list-btn');
+
+        // Butonun başlangıç durumunu ayarla
+        updateButtonState(addButton, movie.title);
+
+        // Film kartındaki Add to List butonu olay dinleyicisi
+        addButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation(); // Kart tıklamasına yayılmasını engelle
+
+            let myList = getMyList();
+            const filmTitle = movie.title; // Filmin başlığını al
+            const isInList = myList.some(f => f.title === filmTitle); // Filmin listede olup olmadığını kontrol et
+
+            if (isInList) {
+                // Film zaten listede ise: listeden kaldır
+                myList = myList.filter(f => f.title !== filmTitle);
+                console.log(`'${filmTitle}' listeden kaldırıldı.`);
+            } else {
+                // Film listede değil ise: listeye ekle
+                myList.push({ title: filmTitle });
+                console.log(`'${filmTitle}' listeye eklendi.`);
+            }
+            localStorage.setItem('myList', JSON.stringify(myList)); // Güncel listeyi kaydet
+
+            // Butonun durumunu güncelle (toggle mantığına göre çalışacak)
+            updateButtonState(addButton, filmTitle);
+        });
+
         return card;
     }
 
@@ -228,8 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         firstStripInner.className = 'movie-strip-inner';
 
         // Tüm filtrelenmiş filmleri tek bir şeride ekle
-        // Animasyonun akıcı olması için filmleri birden fazla kez ekliyoruz (sonsuz döngü hissi vermek için)
-        for (let i = 0; i < 3; i++) { // Filmleri 3 kez tekrar et
+        for (let i = 0; i < 3; i++) {
             filteredMovies.forEach(movie => {
                 firstStripInner.appendChild(createMovieCard(movie));
             });
@@ -262,5 +279,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderMovieStrips({ category, searchTerm });
     });
+
+    // Slider'daki "Add to List" butonu için olay dinleyicisi
+    if (highlightAddToListBtn) {
+        // Konsola, butonun seçilip seçilmediğini kontrol etmek için bir mesaj ekleyelim
+        console.log('highlightAddToListBtn elementi:', highlightAddToListBtn);
+
+        highlightAddToListBtn.addEventListener('click', (e) => {
+            // Butona tıklandığında bu mesaj konsolda görünmeli
+            console.log('Highlight Add to List button clicked!');
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            const currentHighlightedMovie = highlightMovies[currentSlide];
+            const filmTitle = currentHighlightedMovie ? currentHighlightedMovie.title : '';
+
+            if (!filmTitle) {
+                console.warn('Slider film başlığı alınamadı!');
+                return;
+            }
+
+            let myList = getMyList();
+            const isInList = myList.some(f => f.title === filmTitle); // Filmin listede olup olmadığını kontrol et
+
+            if (isInList) {
+                // Film zaten listede ise: listeden kaldır
+                myList = myList.filter(f => f.title !== filmTitle);
+                console.log(`'${filmTitle}' listeden kaldırıldı (Slider).`);
+            } else {
+                // Film listede değil ise: listeye ekle
+                myList.push({ title: filmTitle });
+                console.log(`'${filmTitle}' listeye eklendi (Slider).`);
+            }
+            localStorage.setItem('myList', JSON.stringify(myList)); // Güncel listeyi kaydet
+
+            // Butonun durumunu güncelle (toggle mantığına göre çalışacak)
+            updateButtonState(highlightAddToListBtn, filmTitle);
+        });
+    }
 
 }); // DOMContentLoaded'in kapanış parantezi

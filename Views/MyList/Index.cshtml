@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "My List";
+}
+
+<link rel="stylesheet" href="~/css/mylist.css" />
+
+<div class="my-list-wrapper">
+    <h1 class="my-list-title">My List</h1>
+
+    <div id="myListContainer" class="list-container">
+        <p class="loading-text">Loading your list...</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function renderMyList() {
+            const container = document.getElementById('myListContainer');
+            let myList = JSON.parse(localStorage.getItem('myList')) || [];
+
+            if (myList.length === 0) {
+                container.innerHTML = '<p class="empty-message">Your list is empty. Add some movies from the homepage.</p>';
+                return;
+            }
+
+            container.innerHTML = '';
+
+            myList.forEach(film => {
+                const filmDiv = document.createElement('div');
+                filmDiv.classList.add('my-list-item');
+
+                // Film nesnesinde poster bilgisini kontrol ederek placeholder görsel kullanma
+                const posterUrl = film.poster || 'https://via.placeholder.com/100x150?text=Poster';
+                filmDiv.innerHTML = `
+                    <img src="${posterUrl}" alt="${film.title}" class="poster" />
+                    <div class="info">
+                        <h3>${film.title}</h3>
+                        <p>${film.description || "No description available."}</p>
+                        <small>Added on ${new Date().toLocaleDateString()}</small>
+                        <button class="remove-btn">
+                            <i class="fas fa-trash-alt"></i> Remove
+                        </button>
+                    </div>
+                `;
+
+                const removeBtn = filmDiv.querySelector('.remove-btn');
+                removeBtn.addEventListener('click', () => {
+                    myList = myList.filter(f => f.title !== film.title);
+                    localStorage.setItem('myList', JSON.stringify(myList));
+                    renderMyList();
+                });
+
+                container.appendChild(filmDiv);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMyList();
+        });
+    </script>
+}
